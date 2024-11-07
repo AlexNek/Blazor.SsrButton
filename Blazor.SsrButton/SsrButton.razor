@@ -1,0 +1,60 @@
+﻿@inject NavigationManager NavigationManager
+
+<a href="@GetFullUrl()" class="custom-button" style="background-color: @BgColor; border-color: @BgColor; color: @TextColor;">
+    @if (IconTemplate != null)
+    {
+        <span class="button-icon">@IconTemplate</span>
+    }
+    @Text
+</a>
+
+@code {
+
+    [Parameter]
+    public string Href { get; set; } = "";
+
+    [Parameter]
+    public string Text { get; set; } = "Custom Button";
+
+    [Parameter]
+    public string BgColor { get; set; } = "#007bff";
+
+    [Parameter]
+    public string TextColor { get; set; } = "#ffffff";
+
+    [Parameter]
+    public DynamicParameters Parameters { get; set; } = new DynamicParameters();
+
+    [Parameter]
+    public RenderFragment? IconTemplate { get; set; }
+
+    private string GetFullUrl()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        // Add or update parameters
+        foreach (var param in Parameters.GetAllParameters())
+        {
+            query[param.Key] = param.Value?.ToString();
+        }
+
+        string baseUrl;
+        if (string.IsNullOrEmpty(Href))
+        {
+            baseUrl = uri.GetLeftPart(UriPartial.Path);
+        }
+        else if (Href.StartsWith("http://") || Href.StartsWith("https://"))
+        {
+            baseUrl = Href;
+        }
+        else
+        {
+            baseUrl = $"{NavigationManager.BaseUri.TrimEnd('/')}/{Href.TrimStart('/')}";
+        }
+
+        // Combine the base URL with the query string
+        return query.Count > 0 ? $"{baseUrl}?{query}" : baseUrl;
+    }
+
+}

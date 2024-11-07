@@ -1,0 +1,52 @@
+﻿@using Blazor.SsrButton;
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Static Server-Side Rendering Buttons test</h1>
+
+<p>Simple, the same page</p>
+<SsrButton Text="Goto Home"/>
+<SsrButton Text="Color Yellow+Black" BgColor="#FFFFE0" TextColor="#000000"/>
+
+<br/>
+<br/>
+
+<p>Relative URL and icon</p>
+<SsrButton Text="Weather" Href="weather"/>
+<SsrButton Text="Weather" Href="weather">
+    <IconTemplate>
+        <span>⛅</span>
+    </IconTemplate>
+</SsrButton>
+
+<br/>
+<br/>
+<p>External URL and icons</p>
+<SsrButton Href="https://example.com"
+           Text="External Site"
+           BgColor="#4CAF50">
+    <IconTemplate>
+        <span>★</span>
+    </IconTemplate>
+</SsrButton>
+
+
+<!-- Uses a relative URL -->
+
+<SsrButton Href="counter-wasm" Text="Counter client" BgColor="#2196F3">
+    <IconTemplate>
+        <span>&#x2139;</span>
+    </IconTemplate>
+</SsrButton>
+
+<SsrButton Href="counter-server" Text="Counter server" BgColor="#4CAF00">
+    <IconTemplate>
+        <img src="/favicon.png" alt="Icon" />
+    </IconTemplate>
+</SsrButton>
+
+
+
+
+

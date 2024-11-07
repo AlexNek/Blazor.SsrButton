@@ -1,0 +1,34 @@
+﻿@using System.Diagnostics
+@inject NavigationManager NavigationManager
+
+<h2>Counter '@Id'</h2>
+
+<p>Current count: @_currentCount</p>
+
+<SsrButton 
+    Text="Click me" 
+    Parameters="dynamicParameters" 
+/>
+
+@code {
+    [Parameter] public string Id { get; set; } = "";
+    private int _currentCount = 0;
+
+    private DynamicParameters dynamicParameters { get; set; } = new DynamicParameters();
+
+    protected override void OnInitialized()
+    {
+        Trace.WriteLine($"Init Component: {Id}");
+
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        
+        if (int.TryParse(query[$"count_{Id}"], out int count))
+        {
+            _currentCount = count;
+        }
+
+        dynamicParameters.AddParameter($"count_{Id}", (_currentCount + 1).ToString());
+        // Handle other parameters as needed
+    }
+}

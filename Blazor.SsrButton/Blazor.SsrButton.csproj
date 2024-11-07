@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Title>Blazor SSR button</Title>
+    <Authors>Alex Nek</Authors>
+    <Description>The `SsrButton` is a versatile and customizable button component for Blazor applications. It supports both server-side rendering (SSR) and client-side rendering, making it ideal for use in various Blazor project types.</Description>
+    <Copyright>Alex Nek 2024</Copyright>
+    <PackageIcon>app.png</PackageIcon>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageTags>Blazor;C#;Button;SSR;</PackageTags>
+    <RepositoryUrl>https://github.com/AlexNek/Blazor.SsrButton</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/AlexNek/Blazor.SsrButton</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\app.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.10" />
+  </ItemGroup>
+
+</Project>
