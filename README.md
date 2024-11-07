@@ -33,6 +33,7 @@ dotnet add package Blazor.SsrButton
 
 ### Usage
 Here's how to use the `SsrButton` component in your Blazor pages or components:
+>Note: Don't forget to add `@using Blazor.SsrButton`
 
 - Simple: current page as target.
  ![image](docu/images/button1.png)
@@ -66,6 +67,7 @@ Here's how to use the `SsrButton` component in your Blazor pages or components:
     </IconTemplate>
  </SsrButton>
  ```
+
 
 #### Component Parameters
 
